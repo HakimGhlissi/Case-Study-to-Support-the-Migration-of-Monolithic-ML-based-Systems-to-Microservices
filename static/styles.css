@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif; /* Apply 'Inter' font globally */
+}
+
+/* Ensure html and body take full height */
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Apply the font globally */
+body {
+    background-color: #ffffff;
+    color: #333;
+    font-family: 'Inter', sans-serif; /* Ensure body uses the 'Inter' font */
+}
+  
+.content {
+    flex-grow: 1; /* Allow content to expand and push footer to the bottom */
+    padding-bottom: 50px; /* Space for the footer */
+  }
+  
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+header nav {
+    margin-top: 10px;
+  }
+  
+header nav a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+  }
+  
+header nav a:hover {
+    text-decoration: underline;
+  }
+  
+.intro {
+    margin: 100px 0; /* Increased space between navbar and intro */
+    padding: 0 20px;
+  }
+  
+.intro p {
+    font-size: 1em;
+    line-height: 1.6;
+    max-width: 70vw;
+    margin: 10px auto;
+    text-align: justify; 
+  }
+.intro h2 {
+    font-size: 1.5em;
+    line-height: 1.6;
+    max-width: 70vw;
+    margin: 10px auto;
+  }
+.intro li {
+    font-size: 1em;
+    line-height: 1.6;
+    max-width: 70vw;
+    margin: 0 auto;
+  }
+.intro img {
+    margin: 10px auto;
+  }
+  
+.prediction {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 40px 0;
+  }
+  
+  .prediction input {
+    padding: 10px;
+    width: 70vw;
+    font-size: 1em;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+.prediction button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+.prediction button:hover {
+    background-color: #555;
+  }
+  
+.prediction p {
+    margin-top: 20px;
+    font-size: 1.2em;
+  }
+  
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    background-color: #ffffff;
+    border-top: 1px solid #ddd; 
+    /* Optional: Border for footer separation */
+  }
+  
+/* Header Styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+  }
+  
+/* Title (CIFAR10MSPREDICT) Styling */
+.header-left h1 {
+    font-size: 24px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+.header-left .cifar {
+    font-weight: 400; /* Normal (non-bold) */
+    color: black;
+  }
+  
+.header-left .mspredict {
+    font-weight: 900; /* Bold */
+    color: black;
+  }
+  
+/* Navigation Menu Styling */
+.header-right {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .header-right a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    font-weight: 400;
+    transition: color 0.3s;
+  }
+  
+  .header-right a:hover {
+    color: #555;
+  }
+  
+/* Input styling */
+#image-url {
+    border-radius: 100px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    width: 70%;
+  }
+  

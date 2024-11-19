@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CIFAR10MSPREDICT</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="content">
+      <header>
+        <div class="header-left">
+          <h1>
+            <span class="cifar">CIFAR10</span>
+            <span class="mspredict">MSPREDICT</span>
+          </h1>
+        </div>
+        <nav class="header-right">
+          <a href="./indexbis.html">Home</a>
+          <a href="./Methodology.html">Methodology</a>
+          <a href="./Contact.html">Contact</a>
+        </nav>
+      </header>
+      <section class="intro">
+        <p>
+          This application is a
+          <em style="font-weight: 900"
+            >monolithic, machine learning-based image prediction case study</em
+          >
+          leveraging the CIFAR-10 dataset. Built with a Python and Flask
+          backend, it allows users to upload images and receive accurate
+          predictions effortlessly.
+        </p>
+      </section>
+    </div>
+    <footer>
+      <p>
+        This project is built within the context of the paper
+        <em style="font-weight: 600"
+          >“A Pattern-Guided Microservices Identification Methodology <br />to
+          Support the Migration of Monolithic ML-based Systems to
+          Microservices”</em
+        >
+      </p>
+    </footer>
+
+    <script>
+      function getPrediction() {
+        const imageUrl = document.getElementById("image-url").value;
+        if (!imageUrl) {
+          alert("Please enter an image URL.");
+          return;
+        }
+
+        const modelPath = "best_cnn_model.h5"; // Assume model path here
+        fetch("/predict", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            model_path: modelPath,
+            image_url: imageUrl,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.prediction) {
+              document.getElementById(
+                "prediction-result"
+              ).innerText = `Prediction: ${data.prediction}`;
+            } else {
+              document.getElementById(
+                "prediction-result"
+              ).innerText = `Error: ${data.error}`;
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            document.getElementById("prediction-result").innerText =
+              "An error occurred.";
+          });
+      }
+    </script>
+  </body>
+</html>
