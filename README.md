@@ -1,118 +1,59 @@
-# CIFAR10MSPREDICT: A Pattern-Guided Microservices Identification Methodology
+# CIFAR10MSPREDICT
 
-This repository contains the code and resources for the research project:  
-**“A Pattern-Guided Microservices Identification Methodology to Support the Migration of Monolithic ML-based Systems to Microservices.”**
+## Paper Objective
 
-The project demonstrates a systematic methodology for migrating monolithic machine learning (ML)-based systems into a microservice-based architecture using design patterns. It is built on a monolithic ML image classification system using the CIFAR-10 dataset, and the methodology is validated by transforming the system into a microservices-based architecture.
+In this work, our primary objective is to propose a pattern-based microservices identification methodology to guide the migration of monolithic ML-based systems to microservices, which is structured into three distinct steps:
 
----
+1. **Layered ML Architecture Pattern**: This pattern separates architectural layers within the monolithic ML-based system, isolating the ML layer from other layers and promoting modularity. This separation enables a more precise identification of business functionalities, establishing a strong foundation for decomposing monolithic ML-based systems.
 
-## **Repository Structure**
+2. **ML Pipeline Pattern**: We use this pattern to identify microservices candidates within the ML layer based on the different ML pipeline stages. This step ensures reduced interservice coupling by clearly identifying each microservice's role in the pipeline. This allows for independent scaling, maintenance, and optimization.
 
-### **Monolithic System**
-The original monolithic system includes:
-- A web interface for image classification using trained ML models.
-- Key phases of the ML pipeline:
-  - **Preprocessing**: Data cleaning, transformation, labeling, and feature engineering.
-  - **Model Training**: Model initialization, hyperparameter tuning, and optimization.
-  - **Model Evaluation**: Performance assessment using metrics and validation.
-  - **(Optional)** Model Deployment and Monitoring phases for production use.
+3. **GoF Design Patterns**: In the final step, we apply well-established design patterns like Strategy, State, and Observer to restructure and optimize the identified microservices. These patterns are adapted to the ML context and have demonstrated robustness in system restructuring.
 
-### **Microservices-Based System**
-The migrated system decomposes the monolith into independent microservices based on ML pipeline phases:
-1. **Preprocessing Microservice**  
-   Handles data collection, cleaning, transformation, and feature engineering. Includes strategies like basic preprocessing and data augmentation.
-2. **Model Training Microservice**  
-   Trains models such as CNN and DenseNet. Implements flexibility through the Strategy pattern for choosing between different training models and the State pattern for managing training life-cycle phases.
-3. **Model Evaluation Microservice**  
-   Assesses model performance with metrics and validation tasks. Ensures models meet quality standards before deployment.
-4. **Model Monitoring Microservice**  
-   Tracks the performance of deployed models using the Observer pattern for real-time updates.
+## Methodology Overview
 
-Each microservice adheres to the **Single Responsibility Principle**, ensuring scalability and maintainability.
+![Methodology Overview Diagram](../Assets/Monolith%20System%20Overview.jpg)
 
----
+## Case Study Description
 
-## **Architecture**
+For evaluating the migration of ML-based monolithic systems to microservices, we used a monolithic ML-based image classification system built with Python and Flask, using the CIFAR-10 dataset [CIFAR-10 dataset](https://www.cs.toronto.edu/~kriz/cifar.html). The system includes a front-end interface where users can upload images to receive predictions based on an image recognition model. 
 
-### **Monolithic Architecture**
-The monolithic architecture incorporates all phases of the ML pipeline in a single system, depicted in the "Monolith System Overview" diagram.
+The system employs two types of ML models for image classification:
+1. Convolutional Neural Network (CNN) models
+2. DenseNet models
 
-### **Microservices Architecture**
-The migrated architecture separates the ML pipeline into distinct microservices. This system is structured using design patterns to enhance flexibility and modularity, as shown in the "Final Microservices-Based ML System Architecture" diagram.
+We chose this monolithic ML-based system for our evaluation because it encompasses various stages of the ML pipeline, represents a common use case in ML ecosystems, and is built on an open-source dataset, allowing for reproducibility and validation by other researchers.
 
-**Design Patterns Utilized**:
-- **Strategy Pattern**: Applied in preprocessing and training microservices for dynamic selection of strategies/models.
-- **State Pattern**: Used in training microservices to manage model training life-cycle stages.
-- **Observer Pattern**: Implemented in monitoring microservices for real-time performance tracking.
+## Monolith System Architecture
 
----
+![Monolith System Architecture](../Assets/Phase2ApproachOverview.jpg)
 
-## **Case Study**
+The system includes various stages of the ML pipeline:
+- **Preprocessing Phase**: Includes data cleaning, feature engineering, data labeling, and data collection.
+- **Model Training Phase**: Responsible for model initialization, hyperparameter tuning, and optimization.
+- **Model Evaluation Phase**: Assesses model performance through metrics and error analysis.
+- **Model Deployment Phase**: Not included in the case study but involves serving models in production.
+- **Monitoring Phase**: Ensures ongoing performance checks and logging.
 
-### **Objective**
-To validate the proposed methodology, we used a monolithic ML-based image classification system built with Python and Flask using the CIFAR-10 dataset. It allows users to upload images and receive predictions based on trained models.
+## Final Microservices-Based ML System Architecture
 
-### **Dataset**
-- [CIFAR-10 Dataset](https://www.cs.toronto.edu/~kriz/cifar.html): A widely-used benchmark dataset for image classification containing 60,000 32x32 color images in 10 classes.
+![Final Microservices-Based ML System Architecture](../Assets/GeneralSystemOverview2.jpg)
 
-### **Models Used**
-1. **Convolutional Neural Network (CNN)**
-2. **DenseNet**
+The final architecture uses microservices to manage key stages of the ML pipeline. These microservices align with the principles of modularity, scalability, and flexibility. The identified microservices are:
 
----
+1. **Preprocessing Microservice**: Handles tasks like data cleaning, transformation, and feature engineering.
+2. **Model Training Microservice**: Responsible for training ML models using the preprocessed data.
+3. **Model Evaluation Microservice**: Evaluates model performance using various metrics and validation techniques.
+4. **Model Monitoring Microservice**: Monitors the performance of deployed models, ensuring their ongoing effectiveness.
 
-## **Setup and Usage**
+After identifying the candidate microservices, we applied GoF design patterns to structure them effectively:
+- **Strategy Pattern**: Used in the preprocessing microservice to select between different preprocessing strategies, such as basic preprocessing and data augmentation.
+- **State Pattern**: Applied in the model training microservice to manage different phases of the training lifecycle.
+- **Observer Pattern**: Used in the model monitoring microservice to enable real-time tracking of performance metrics.
 
-### **Prerequisites**
-- Python 3.8 or later
-- Flask
-- RabbitMQ (for the Event-Driven Architecture version)
-- Other dependencies specified in `requirements.txt`
+## Conclusion
 
-### **Steps to Run**
-
-#### **Monolithic System**
-1. Navigate to the `monolithic/` directory.
-2. Install dependencies:  
-   ```bash
-   pip install -r requirements.txt
-3. Run the Flask server:
-```bash
-Copy code
-python app.py
-
-Access the web interface at http://localhost:5000.
-Microservices-Based System
-Navigate to the microservices/ directory.
-Start RabbitMQ (for EDA-based architecture).
-Deploy individual microservices:
-Preprocessing
-Training
-Evaluation
-Monitoring
-Run each microservice using:
-bash
-Copy code
-python service_name.py
-Access the API Gateway or web interface.
-Methodology
-The proposed methodology is divided into three steps:
-
-Layered ML Architecture
-Decomposes the monolith using the Layered ML Architecture Pattern to identify ML-related components.
-ML Pipeline Pattern
-Identifies microservice candidates within the ML layer by mapping distinct pipeline stages.
-GoF Design Patterns
-Applies design patterns (Strategy, State, Observer) to restructure and optimize the identified microservices.
-Contribution
-This project showcases a novel approach for transitioning ML-based monolithic systems into microservices using structured patterns. The proposed methodology enhances:
-
-Scalability: Independent scaling of microservices.
-Maintainability: Modular design with reduced coupling.
-Flexibility: Adaptable to various ML applications.
-References
-Yokoyama, S. et al.: Layered ML Architecture Pattern
-Amershi, S. et al.: ML Pipeline Pattern
-Gamma, E. et al.: GoF Design Patterns
-Take et al.: Adaptation of Design Patterns for ML Context
+This methodology showcases a novel approach for migrating ML-based monolithic systems to microservices using structured design patterns. It enhances:
+- **Scalability**: Microservices can be independently scaled based on needs.
+- **Maintainability**: Modular design reduces coupling between components.
+- **Flexibility**: The system can easily adapt to various ML applications.
