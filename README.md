@@ -12,7 +12,7 @@ In this work, our primary objective is to propose a pattern-based microservices 
 
 ## Methodology Overview
 
-![Methodology Overview Diagram](../Assets/Monolith%20System%20Overview.jpg)
+![Methodology Overview Diagram](./Assets/Monolith%20System%20Overview.jpg)
 
 ## Case Study Description
 
@@ -26,7 +26,7 @@ We chose this monolithic ML-based system for our evaluation because it encompass
 
 ## Monolith System Architecture
 
-![Monolith System Architecture](../Assets/Phase2ApproachOverview.jpg)
+![Monolith System Architecture](./Assets/Phase2ApproachOverview.jpg)
 
 The system includes various stages of the ML pipeline:
 - **Preprocessing Phase**: Includes data cleaning, feature engineering, data labeling, and data collection.
@@ -37,7 +37,7 @@ The system includes various stages of the ML pipeline:
 
 ## Final Microservices-Based ML System Architecture
 
-![Final Microservices-Based ML System Architecture](../Assets/GeneralSystemOverview2.jpg)
+![Final Microservices-Based ML System Architecture](./Assets/GeneralSystemOverview2.jpg)
 
 The final architecture uses microservices to manage key stages of the ML pipeline. These microservices align with the principles of modularity, scalability, and flexibility. The identified microservices are:
 
