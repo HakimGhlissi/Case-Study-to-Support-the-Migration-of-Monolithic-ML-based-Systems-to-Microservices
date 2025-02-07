@@ -56,4 +56,4 @@ After identifying the candidate microservices, we applied GoF design patterns to
 This methodology showcases a novel approach for migrating ML-based monolithic systems to microservices using structured design patterns. It enhances:
 - **Scalability**: Microservices can be independently scaled based on needs.
 - **Maintainability**: Modular design reduces coupling between components.
-- **Flexibility**: The system can easily adapt to various ML applications.
+- **Flexibility**: The system can easily adapt to various ML applications."# AIAppCodeTemplate" 
